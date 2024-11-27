@@ -3,3 +3,9 @@
     display: flex;
     flex-direction: row;
 }
+
+.searchLogoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

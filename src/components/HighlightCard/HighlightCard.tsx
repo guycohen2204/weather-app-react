@@ -2,12 +2,16 @@ import React from 'react';
 
 import styles from './HighlightCard.module.css';
 
-const HighlightCard = () => {
+type Props = {
+    title: string;
+    value: number;
+}
+
+const HighlightCard = ({ title, value }: Props) => {
     return (
         <div className={styles.container}>
-            <h5>a</h5>
-            <p>b</p>
-            <p>c</p>
+            <h5 className={styles.title}>{title}</h5>
+            <p>{value}</p>
         </div>
     );
 };

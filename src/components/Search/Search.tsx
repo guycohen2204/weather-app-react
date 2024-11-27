@@ -1,23 +1,42 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Search.module.css';
 
 import { FaSearch } from 'react-icons/fa';
 import { FiTarget } from 'react-icons/fi';
+import { Context } from '../../App';
+import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
 
-const Search = () => {
+type Props = {
+	setCities: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const Search = ({ setCities }: Props) => {
 	const [searchValue, setSearchValue] = useState<string>('');
+
+	const city = useContext(Context);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
 	};
 
+	const handleSubmit = async () => {
+		if (searchValue) {
+			setCities((prev) => [...prev, searchValue]);
+		}
+		// const data = await getCurrentWeatherByCity(searchValue);
+		// console.log(data);
+		setSearchValue('');
+	};
+
 	return (
 		<div className={styles.Search}>
-			<FaSearch />
+			<div className={styles.searchLogoContainer}>
+				<FaSearch />
+			</div>
 
 			<input type='text' value={searchValue} onChange={handleChange} />
 
-			<button>
+			<button onClick={handleSubmit}>
 				<FiTarget />
 			</button>
 		</div>

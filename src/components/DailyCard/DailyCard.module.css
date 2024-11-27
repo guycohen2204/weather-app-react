@@ -6,3 +6,12 @@
     border-radius: 10px;
     margin: 10px;
 }
+
+.degreesContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.degreesContainer > p {
+    margin: 8px 5px;
+}
