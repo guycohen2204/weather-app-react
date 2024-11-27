@@ -4,14 +4,14 @@ import styles from './HighlightCard.module.css';
 
 type Props = {
     title: string;
-    value: number;
+    value?: string;
 }
 
 const HighlightCard = ({ title, value }: Props) => {
     return (
         <div className={styles.container}>
             <h5 className={styles.title}>{title}</h5>
-            <p>{value}</p>
+            <p>{value || 'N/A'}</p>
         </div>
     );
 };

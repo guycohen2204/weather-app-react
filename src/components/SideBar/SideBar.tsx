@@ -6,14 +6,13 @@ import CitiesContainer from '../CitiesContainer/CitiesContainer';
 import TodaysWeather from '../TodaysWeather/TodaysWeather';
 
 const SideBar = () => {
-
-    const [cities, setCities] = useState<string[]>(['london', 'tel aviv']);
+	const [cities, setCities] = useState<string[]>(['london', 'tel aviv']);
 
 	return (
 		<div className={styles.sideBar}>
 			<Search setCities={setCities} />
 			<CitiesContainer cities={cities} />
-            <TodaysWeather />
+			<TodaysWeather />
 		</div>
 	);
 };

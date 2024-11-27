@@ -4,7 +4,7 @@ import styles from './Search.module.css';
 import { FaSearch } from 'react-icons/fa';
 import { FiTarget } from 'react-icons/fi';
 import { AppContext } from '../../context/AppProvider';
-import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
+// import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
 
 type Props = {
 	setCities: React.Dispatch<React.SetStateAction<string[]>>;
@@ -13,7 +13,12 @@ type Props = {
 const Search = ({ setCities }: Props) => {
 	const [searchValue, setSearchValue] = useState<string>('');
 
-	const city = useContext(AppContext);
+	const context = useContext(AppContext);
+	if (!context) {
+		throw new Error('AppContext must be used in an AppProvider');
+	}
+
+	const { setCity } = context;
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
@@ -22,10 +27,11 @@ const Search = ({ setCities }: Props) => {
 	const handleSubmit = async () => {
 		if (searchValue) {
 			setCities((prev) => [...prev, searchValue]);
+
+			setCity(searchValue);
+
+			setSearchValue('');
 		}
-		// const data = await getCurrentWeatherByCity(searchValue);
-		// console.log(data);
-		setSearchValue('');
 	};
 
 	return (
@@ -34,7 +40,12 @@ const Search = ({ setCities }: Props) => {
 				<FaSearch />
 			</div>
 
-			<input type='text' value={searchValue} onChange={handleChange} />
+			<input
+				type='text'
+				value={searchValue}
+				onChange={handleChange}
+				placeholder='Search for cities...'
+			/>
 
 			<button onClick={handleSubmit}>
 				<FiTarget />

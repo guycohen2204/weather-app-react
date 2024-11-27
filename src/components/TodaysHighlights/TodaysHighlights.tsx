@@ -4,39 +4,44 @@ import styles from './TodaysHighlights.module.css';
 import HighlightCard from '../HighlightCard/HighlightCard';
 import { AppContext } from '../../context/AppProvider';
 import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
+import { CurrentType } from '../../models/WeatherType';
 
 const TodaysHighlights = () => {
-	const [data, setData] = useState();
+	const [data, setData] = useState<CurrentType>();
 
-	const cityContext: string = useContext(AppContext).city;
+	const context = useContext(AppContext);
+
+	if (!context) {
+		throw new Error('AppContext must be used within an AppProvider');
+	}
+
+	const { city } = context;
 
 	useEffect(() => {
 		const fetchWeatherData = async () => {
-			console.log('cityContext is --- ' + cityContext);
-
-			if (cityContext) {
-				const weatherData = await getCurrentWeatherByCity(cityContext);
-				setData(weatherData.current);
+			try {
+				if (city) {
+					const weatherData = await getCurrentWeatherByCity(city);
+					setData(weatherData.current);
+				}
+			} catch (error) {
+				console.error('Error fetching weather data:', error);
 			}
 		};
 
-		try {
-			fetchWeatherData();
-		} catch (error) {
-			console.error(error);
-		}
-	}, [cityContext]);
+		fetchWeatherData();		
+	}, [city]);
 
 	return (
 		<div>
 			<h3 style={{ paddingLeft: '10px' }}>Today's Highlights</h3>
 			<div className={styles.gridContainer}>
-				<HighlightCard title='UV Index' value={10} />
-				<HighlightCard title='Wind Status' value={10} />
-				<HighlightCard title='Sunrise & Sunset' value={10} />
-				<HighlightCard title='Humidity' value={10} />
-				<HighlightCard title='Visibility' value={10} />
-				<HighlightCard title='Air Quality' value={10} />
+				<HighlightCard title='UV Index' value={data?.uvIndex} />
+				<HighlightCard title='Wind Status' value={data?.windStatus} />
+				{/* <HighlightCard title='Sunrise & Sunset' value={data?.} /> */}
+				<HighlightCard title='Humidity' value={data?.humidity} />
+				<HighlightCard title='Visibility' value={data?.visibility} />
+				<HighlightCard title='Air Quality' value={data?.air_quality} />
 			</div>
 		</div>
 	);

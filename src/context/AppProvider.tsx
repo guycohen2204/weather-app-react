@@ -1,18 +1,18 @@
 import React, { createContext, useState } from 'react';
 
 type Theme = 'light' | 'dark';
+
 type AppContextType = {
-    city: string;
-    setCity: (city: string) => void;
-    theme: Theme;
-    setTheme: (theme: Theme) => void;
-  };
+	city: string;
+	setCity: (city: string) => void;
+	theme: Theme;
+	setTheme: (theme: Theme) => void;
+};
 
-export const AppContext = createContext<AppContextType>({ city: '', setCity: () => {}, theme: 'light', setTheme: () => {} });
-
+export const AppContext = createContext<AppContextType | null>(null);
 
 type Props = {
-	children: JSX.Element;
+	children: React.ReactNode;
 };
 
 const AppProvider = ({ children }: Props) => {
