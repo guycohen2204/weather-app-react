@@ -3,7 +3,7 @@ import styles from './Search.module.css';
 
 import { FaSearch } from 'react-icons/fa';
 import { FiTarget } from 'react-icons/fi';
-import { Context } from '../../App';
+import { AppContext } from '../../context/AppProvider';
 import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 const Search = ({ setCities }: Props) => {
 	const [searchValue, setSearchValue] = useState<string>('');
 
-	const city = useContext(Context);
+	const city = useContext(AppContext);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
