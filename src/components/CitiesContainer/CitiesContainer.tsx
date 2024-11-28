@@ -11,7 +11,7 @@ const CitiesContainer = ({ cities }: Props) => {
 	return (
 		<div className={styles.container}>
 			{cities.map((city: string, index: number) => (
-				<CityButton key={`${city}-${index}`} title={city} />
+				<CityButton key={`${city}-${index}`} city={city} />
 			))}
 		</div>
 	);

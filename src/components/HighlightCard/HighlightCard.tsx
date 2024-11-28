@@ -11,7 +11,7 @@ const HighlightCard = ({ title, value }: Props) => {
     return (
         <div className={styles.container}>
             <h5 className={styles.title}>{title}</h5>
-            <p>{value || 'N/A'}</p>
+            <p>{value ?? 'N/A'}</p>
         </div>
     );
 };

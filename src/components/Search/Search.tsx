@@ -4,13 +4,13 @@ import styles from './Search.module.css';
 import { FaSearch } from 'react-icons/fa';
 import { FiTarget } from 'react-icons/fi';
 import { AppContext } from '../../context/AppProvider';
-// import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
 
 type Props = {
+	cities: string[];
 	setCities: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const Search = ({ setCities }: Props) => {
+const Search = ({ cities, setCities }: Props) => {
 	const [searchValue, setSearchValue] = useState<string>('');
 
 	const context = useContext(AppContext);
@@ -26,7 +26,8 @@ const Search = ({ setCities }: Props) => {
 
 	const handleSubmit = async () => {
 		if (searchValue) {
-			setCities((prev) => [...prev, searchValue]);
+			if (!cities.includes(searchValue))
+				setCities((prev) => [...prev, searchValue]);
 
 			setCity(searchValue);
 

@@ -10,7 +10,7 @@ const SideBar = () => {
 
 	return (
 		<div className={styles.sideBar}>
-			<Search setCities={setCities} />
+			<Search cities={cities} setCities={setCities} />
 			<CitiesContainer cities={cities} />
 			<TodaysWeather />
 		</div>
