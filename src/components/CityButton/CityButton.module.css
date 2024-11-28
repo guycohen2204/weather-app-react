@@ -1,5 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 3px 0;
+}
+
 .buttonContainer {
     padding: 10px;
     width: 100%;
-    border-radius: 20px;
+    border: none;
+    border-right: 1px solid black;
+}
+
+.removeButton {
+    border: none;
 }

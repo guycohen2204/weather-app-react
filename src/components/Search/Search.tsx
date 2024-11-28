@@ -36,19 +36,20 @@ const Search = ({ cities, setCities }: Props) => {
 	};
 
 	return (
-		<div className={styles.Search}>
+		<div className={styles.SearchContainer}>
 			<div className={styles.searchLogoContainer}>
 				<FaSearch />
 			</div>
 
 			<input
+				className={styles.searchInput}
 				type='text'
 				value={searchValue}
 				onChange={handleChange}
 				placeholder='Search for cities...'
 			/>
 
-			<button onClick={handleSubmit}>
+			<button className={styles.targetButton} onClick={handleSubmit}>
 				<FiTarget />
 			</button>
 		</div>
