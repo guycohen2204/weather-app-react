@@ -5,7 +5,7 @@ import styles from './DailyCard.module.css';
 type Props = {
 	title: string;
 	imageUrl: string;
-	degrees: [number, number];
+	degrees: number[] | string[];
 };
 
 const DailyCard = ({ title, imageUrl, degrees }: Props) => {
@@ -15,7 +15,9 @@ const DailyCard = ({ title, imageUrl, degrees }: Props) => {
 			<img src={imageUrl} alt={`${title} image`} />
 			<div className={styles.degreesContainer}>
 				<p>{`${degrees[0]}°`}</p>
-				<p style={{ color: 'gray' }}>{`${degrees[1]}°`}</p>
+				{degrees.length >= 2 && (
+					<p style={{ color: 'gray' }}>{`${degrees[1]}°`}</p>
+				)}
 			</div>
 		</div>
 	);

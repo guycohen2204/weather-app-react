@@ -38,8 +38,6 @@ const Search = ({ cities, setCities }: Props) => {
 			if (val.trim()) {
 				const suggestions: string[] = await getAutoCompleteSuggestions(val);
 				setAutoCompleteOptions(suggestions);
-		
-				console.log(suggestions);
 			} else {
 				setAutoCompleteOptions([]);
 			}

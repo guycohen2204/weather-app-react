@@ -17,7 +17,7 @@ type Props = {
 
 const AppProvider = ({ children }: Props) => {
 	const [theme, setTheme] = useState<Theme>('light');
-	const [city, setCity] = useState<string>('');
+	const [city, setCity] = useState<string>('London');
 
 	const value = {
 		theme,

@@ -20,3 +20,13 @@ export type WeatherType = {
 	location: LocationType;
 	current: CurrentType;
 }
+
+
+/////////
+
+
+export type HourlyType = {
+	time: string;
+	temp: string;
+	imageUrl: string
+}

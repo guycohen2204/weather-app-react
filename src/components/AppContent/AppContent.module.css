@@ -1,0 +1,22 @@
+.container {
+    background: rgb(246, 246, 248);
+    padding: 15px;
+}
+
+.buttonsContainer {
+    padding: 10px;
+}
+
+.periodTitle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    border-bottom: 2px solid black;
+    transition: all 0.3s ease-in-out;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.active {
+    font-size: larger;
+}

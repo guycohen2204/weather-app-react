@@ -1,29 +1,28 @@
 /* Container for the autocomplete suggestions */
 .autoCompleteContainer {
-    position: absolute; /* Position relative to the nearest ancestor with `position: relative` */
-    display: flex;
-    flex-direction: column;
-    top: 100%; /* Place the dropdown just below the input */
-    left: 0;
-    width: 100%;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    z-index: 10; /* Ensure it appears above other elements */
-    overflow: hidden; /* Prevent elements from spilling out */
-  }
-  
-  /* Each suggestion item in the autocomplete */
-  .autoCompleteItem {
-    padding: 10px;
-    font-size: 14px;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .autoCompleteItem:hover {
-    background-color: #f0f0f0; /* Highlight on hover */
-  }
-  
+	position: absolute; /* Position relative to the nearest ancestor with `position: relative` */
+	display: flex;
+	flex-direction: column;
+	top: 100%; /* Place the dropdown just below the input */
+	left: 0;
+	width: 100%;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+	z-index: 10; /* Ensure it appears above other elements */
+	overflow: hidden; /* Prevent elements from spilling out */
+}
+
+/* Each suggestion item in the autocomplete */
+.autoCompleteItem {
+	padding: 10px;
+	font-size: 14px;
+	color: #333;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.autoCompleteItem:hover {
+	background-color: #f0f0f0; /* Highlight on hover */
+}
