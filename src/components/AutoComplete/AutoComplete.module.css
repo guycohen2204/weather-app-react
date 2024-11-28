@@ -1,6 +1,8 @@
 /* Container for the autocomplete suggestions */
 .autoCompleteContainer {
     position: absolute; /* Position relative to the nearest ancestor with `position: relative` */
+    display: flex;
+    flex-direction: column;
     top: 100%; /* Place the dropdown just below the input */
     left: 0;
     width: 100%;
