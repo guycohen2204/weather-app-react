@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import styles from './CitiesContainer.module.css';
 import CityButton from '../CityButton/CityButton';
+import { AppContext } from '../../context/AppProvider';
 
 type Props = {
 	cities: string[];
@@ -9,6 +10,19 @@ type Props = {
 };
 
 const CitiesContainer = ({ cities, setCities }: Props) => {
+	const [selectedCity, setSelectedCity] = useState<string>('')
+
+	const context = useContext(AppContext);
+	if (!context) {
+		throw new Error('AppContext must be used in an AppProvider')
+	}
+
+	const { city } = context;
+
+	useEffect(() => {
+		setSelectedCity(city);
+	}, [city])
+
 	return (
 		<div className={styles.container}>
 			{cities.map((city: string, index: number) => (
@@ -17,6 +31,7 @@ const CitiesContainer = ({ cities, setCities }: Props) => {
 					city={city}
 					setCities={setCities}
 					cities={cities}
+					selected={city === selectedCity}
 				/>
 			))}
 		</div>

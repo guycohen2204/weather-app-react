@@ -30,3 +30,10 @@ export type HourlyType = {
 	temp: string;
 	imageUrl: string
 }
+
+export type DailyType = {
+	date: string;
+	max_temp: string;
+	min_temp: string;
+	imageUrl: string;
+}

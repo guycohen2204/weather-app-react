@@ -7,9 +7,10 @@ type Props = {
 	city: string;
 	setCities: React.Dispatch<React.SetStateAction<string[]>>;
 	cities: string[];
+	selected: boolean;
 };
 
-const CityButton = ({ city, setCities, cities }: Props) => {
+const CityButton = ({ city, setCities, cities, selected }: Props) => {
 	const context = useContext(AppContext);
 
 	if (!context) {
@@ -33,7 +34,7 @@ const CityButton = ({ city, setCities, cities }: Props) => {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={`${styles.container} ${selected && styles.selected}`}>
 			<button
 				className={styles.buttonContainer}
 				value={city}
