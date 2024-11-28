@@ -37,10 +37,10 @@ const TodaysHighlights = () => {
 			<h3 style={{ paddingLeft: '10px' }}>Today's Highlights</h3>
 			<div className={styles.gridContainer}>
 				<HighlightCard title='UV Index' value={data?.uvIndex} />
-				<HighlightCard title='Wind Status' value={data?.windStatus} />
+				<HighlightCard title='Wind Status' value={data?.windStatus} symbol='km/h' />
 				{/* <HighlightCard title='Sunrise & Sunset' value={data?.} /> */}
-				<HighlightCard title='Humidity' value={data?.humidity} />
-				<HighlightCard title='Visibility' value={data?.visibility} />
+				<HighlightCard title='Humidity' value={data?.humidity} symbol='%' />
+				<HighlightCard title='Visibility' value={data?.visibility} symbol='km' />
 				<HighlightCard title='Air Quality' value={data?.air_quality} />
 			</div>
 		</div>

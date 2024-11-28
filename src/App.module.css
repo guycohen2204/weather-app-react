@@ -4,4 +4,5 @@
     grid-template-columns: 1fr 4fr;
     border-radius: 30px;
     overflow: hidden;
+    margin: 20px;
 }

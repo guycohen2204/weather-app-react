@@ -2,6 +2,7 @@
 .SearchContainer {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 .searchLogoContainer {
