@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 2px;
 }
 
 .searchInput {
@@ -26,4 +27,5 @@ input:focus {
     align-items: center;
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }

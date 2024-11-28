@@ -11,8 +11,10 @@
     width: 100%;
     border: none;
     border-right: 1px solid black;
+    cursor: pointer;
 }
 
 .removeButton {
     border: none;
+    cursor: pointer;
 }
