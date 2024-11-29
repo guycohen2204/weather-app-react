@@ -33,29 +33,18 @@ const WeeklyForecast = () => {
 		fetchDailyWeatherData();
 	}, [city]);
 
-	const Cards = data.map((dailyObj: DailyType) => (
-		<DailyCard
-			title={moment(dailyObj?.date).format('ddd')}
-			imageUrl={dailyObj?.imageUrl}
-			degrees={dailyObj && [dailyObj?.min_temp, dailyObj?.max_temp]}
-		/>
-	))
-
 	return (
 		<div className={styles.container}>
-			{
-				Cards
-			}
-			{
-				Cards
-			}
-			{Cards[0]}
-			{/* <DailyCard title='Mon' imageUrl='' degrees={[0, 10]} />
-			<DailyCard title='Tue' imageUrl='' degrees={[0, 10]} />
-			<DailyCard title='Wed' imageUrl='' degrees={[0, 10]} />
-			<DailyCard title='Thu' imageUrl='' degrees={[0, 10]} />
-			<DailyCard title='Fri' imageUrl='' degrees={[0, 10]} />
-			<DailyCard title='Sat' imageUrl='' degrees={[0, 10]} /> */}
+			{data.map((dailyObj: DailyType, index: number) => (
+				<DailyCard
+					key={index}
+					title={moment(dailyObj?.date).format('ddd')}
+					imageUrl={dailyObj?.imageUrl}
+					degrees={
+						dailyObj && [dailyObj?.min_temp, dailyObj?.max_temp]
+					}
+				/>
+			))}
 		</div>
 	);
 };

@@ -36,9 +36,8 @@ const HourlyForecast = () => {
 	return (
 		<div className={styles.container}>
 			{data ? (
-				// data.slice(moment().hour(),moment().hour() + 7).map((hourObj: HourlyType) => (
 				data
-					.slice(10, 17)
+					.slice(moment().hour(), moment().hour() + 7)
 					.map((hourObj: HourlyType) => (
 						<DailyCard
 							key={hourObj.time}
