@@ -5,11 +5,12 @@
     overflow: hidden;
     margin: 3px 0;
     width: 85%;
-    background-color: rgba(168, 146, 146, 0.395);
+    background-color: rgba(214, 215, 218, 0.8);
 }
 
 .selected {
-    background-color: rgba(168, 146, 146, 1);
+    background-color: rgba(100, 100, 100, 0.8);
+    font-weight: 600;
 }
 
 .buttonContainer {
@@ -19,6 +20,7 @@
     border-right: 1px solid black;
     cursor: pointer;
     background-color: transparent;
+    font-weight: inherit;
 }
 
 .removeButton {

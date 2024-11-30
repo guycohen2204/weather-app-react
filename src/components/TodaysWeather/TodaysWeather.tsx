@@ -8,17 +8,17 @@ import { WeatherType } from '../../models/WeatherType';
 import { roundString } from '../../utils/roundString';
 
 const TodaysWeather = () => {
-    const [data, setData] = useState<WeatherType>();
+	const [data, setData] = useState<WeatherType>();
 
-    const context = useContext(AppContext);
+	const context = useContext(AppContext);
 
-    if (!context) {
+	if (!context) {
 		throw new Error('AppContext must be used in an AppProvider');
 	}
 
-    const { city } = context;
+	const { city } = context;
 
-    useEffect(() => {
+	useEffect(() => {
 		const fetchWeatherData = async () => {
 			try {
 				if (city) {
@@ -30,15 +30,23 @@ const TodaysWeather = () => {
 			}
 		};
 
-		fetchWeatherData();		
+		fetchWeatherData();
 	}, [city]);
 
 	return (
 		<div className={styles.container}>
 			<img src={data?.current.conditionIcon} alt='condition logo' />
-			<p className={styles.Degree}>{data?.current.temp ? roundString(data?.current.temp)+'°C' : 'N/A'}</p>
-			<p>{data ? moment(data?.location.localTime).format('dddd, HH:mm') : 'N/A'}</p>
-			<p>{data?.current.condition}</p>
+			<div className={styles.Degree} style={{ padding: '10px' }}>
+				{data?.current.temp
+					? roundString(data?.current.temp) + '°C'
+					: 'N/A'}
+			</div>
+			<div style={{ padding: '10px' }}>{data?.current.condition}</div>
+			<div style={{ padding: '10px' }}>
+				{data
+					? moment(data?.location.localTime).format('dddd, HH:mm')
+					: 'N/A'}
+			</div>
 		</div>
 	);
 };

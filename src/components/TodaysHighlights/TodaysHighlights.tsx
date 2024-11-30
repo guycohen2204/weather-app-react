@@ -4,10 +4,11 @@ import styles from './TodaysHighlights.module.css';
 import HighlightCard from '../HighlightCard/HighlightCard';
 import { AppContext } from '../../context/AppProvider';
 import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
-import { CurrentType } from '../../models/WeatherType';
+import { WeatherType } from '../../models/WeatherType';
+import MapComponent from '../MapComponent/MapComponent';
 
 const TodaysHighlights = () => {
-	const [data, setData] = useState<CurrentType>();
+	const [data, setData] = useState<WeatherType>();
 
 	const context = useContext(AppContext);
 
@@ -22,26 +23,52 @@ const TodaysHighlights = () => {
 			try {
 				if (city) {
 					const weatherData = await getCurrentWeatherByCity(city);
-					setData(weatherData.current);
+					console.log(weatherData);
+					
+					setData(weatherData);
 				}
 			} catch (error) {
 				console.error('Error fetching weather data:', error);
 			}
 		};
 
-		fetchWeatherData();		
+		fetchWeatherData();
 	}, [city]);
 
 	return (
 		<div>
 			<h3 style={{ paddingLeft: '10px' }}>Today's Highlights</h3>
 			<div className={styles.gridContainer}>
-				<HighlightCard title='UV Index' value={data?.uvIndex} />
-				<HighlightCard title='Wind Status' value={data?.windStatus} symbol='km/h' />
-				{/* <HighlightCard title='Sunrise & Sunset' value={data?.} /> */}
-				<HighlightCard title='Humidity' value={data?.humidity} symbol='%' />
-				<HighlightCard title='Visibility' value={data?.visibility} symbol='km' />
-				<HighlightCard title='Air Quality' value={data?.air_quality} />
+				<HighlightCard
+					title='UV Index'
+					value={data?.current?.uvIndex}
+				/>
+				<HighlightCard
+					title='Wind Status'
+					value={data?.current?.windStatus}
+					symbol='km/h'
+				/>
+				<HighlightCard
+					title='Humidity'
+					value={data?.current?.humidity}
+					symbol='%'
+				/>
+				<HighlightCard
+					title='Visibility'
+					value={data?.current?.visibility}
+					symbol='km'
+				/>
+				<HighlightCard
+					title='Air Quality'
+					value={data?.current?.air_quality}
+				/>
+				<MapComponent
+					coords={
+						data
+							? [+data?.location?.lon, +data?.location?.lat]
+							: [0, 0]
+					}
+				/>
 			</div>
 		</div>
 	);

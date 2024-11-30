@@ -14,11 +14,18 @@ export type LocationType = {
 	name: string;
 	country: string;
 	localTime: string;
+	lat: string;
+	lon: string;
 }
 
 export type WeatherType = {
 	location: LocationType;
 	current: CurrentType;
+}
+
+export type HourlyWeatherType = {
+	location: LocationType,
+	hourlyForecast: HourlyType[]
 }
 
 

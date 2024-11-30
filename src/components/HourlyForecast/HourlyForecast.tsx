@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { HourlyType } from '../../models/WeatherType';
+import { HourlyType, HourlyWeatherType } from '../../models/WeatherType';
 import { AppContext } from '../../context/AppProvider';
 import getHourlyForecastByCityName from '../../api/getHourlyForcast';
 import DailyCard from '../DailyCard/DailyCard';
@@ -9,7 +9,7 @@ import moment from 'moment';
 import { roundString } from '../../utils/roundString';
 
 const HourlyForecast = () => {
-	const [data, setData] = useState<HourlyType[]>();
+	const [data, setData] = useState<HourlyWeatherType>();
 
 	const context = useContext(AppContext);
 	if (!context) {
@@ -36,14 +36,17 @@ const HourlyForecast = () => {
 	return (
 		<div className={styles.container}>
 			{data ? (
-				data
-					.slice(moment().hour(), moment().hour() + 7)
+				data.hourlyForecast
+					.slice(
+						moment(data.location.localTime).hour(),
+						moment(data.location.localTime).hour() + 7
+					)
 					.map((hourObj: HourlyType) => (
 						<DailyCard
-							key={hourObj.time}
-							title={moment(hourObj.time).format('HH:mm')}
-							imageUrl={hourObj.imageUrl}
-							degrees={[roundString(hourObj.temp)]}
+							key={hourObj?.time}
+							title={moment(hourObj?.time).format('HH:mm')}
+							imageUrl={hourObj?.imageUrl}
+							degrees={[roundString(hourObj?.temp)]}
 						/>
 					))
 			) : (
