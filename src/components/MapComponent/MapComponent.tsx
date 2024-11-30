@@ -20,7 +20,7 @@ const MapComponent = ({ coords }: Props) => {
 			const map = new Map({
 				target: mapRef.current,
 				layers: [new TileLayer({ source: new OSM() })],
-				view: new View({ center: fromLonLat(coords), zoom: 5 }),
+				view: new View({ center: [0, 0], zoom: 5 }),
 			});
 
 			mapInstanceRef.current = map;

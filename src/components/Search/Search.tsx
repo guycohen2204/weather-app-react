@@ -47,7 +47,8 @@ const Search = ({ cities, setCities }: Props) => {
 
 	const handleSubmit = async () => {
 		if (searchValue.trim()) {
-			const capitalizedSearchValue = capitalize(searchValue);
+			const suggestion = await getAutoCompleteSuggestions(searchValue)
+			const capitalizedSearchValue = capitalize(suggestion[0]);
 			if (!cities.includes(capitalizedSearchValue))
 				setCities((prev) => [...prev, capitalizedSearchValue]);
 
