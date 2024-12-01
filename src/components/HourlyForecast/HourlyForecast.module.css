@@ -3,5 +3,5 @@
     flex-direction: row;
     justify-content: space-around;
     overflow-x: scroll;
-    padding: 0 30px;
+    padding: 10px 30px;
 }
