@@ -51,8 +51,8 @@ const Search = ({ cities, setCities }: Props) => {
 			const suggestion = await getAutoCompleteSuggestions(searchValue)
 			const capitalizedSearchValue = capitalize(suggestion[0]);
 			if (!cities.includes(capitalizedSearchValue)) {
-				setCities((prev) => [...prev, capitalizedSearchValue]);
-				setCitiesList([...cities, capitalizedSearchValue])
+				setCities((prev) => [capitalizedSearchValue, ...prev]);
+				setCitiesList([capitalizedSearchValue, ...cities])
 			}
 
 			setCity(capitalizedSearchValue);

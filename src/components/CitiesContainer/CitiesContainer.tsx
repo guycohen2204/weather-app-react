@@ -26,7 +26,7 @@ const CitiesContainer = ({ cities, setCities }: Props) => {
 	useEffect(() => {
 		setSelectedCity(city);
 	}, [city])
-
+	
 	return (
 		<div className={styles.container}>
 			{cities.map((city: string, index: number) => (

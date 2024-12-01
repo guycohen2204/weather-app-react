@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './HighlightCard.module.css';
+import { roundString } from '../../utils/roundString';
 
 type Props = {
     title: string;
@@ -12,7 +13,7 @@ const HighlightCard = ({ title, value, symbol }: Props) => {
     return (
         <div className={styles.container}>
             <h5 className={styles.title}>{title}</h5>
-            <p>{value ?? 'N/A'} {symbol}</p>
+            <p>{value ? roundString(value) : 'N/A'} {symbol}</p>
         </div>
     );
 };

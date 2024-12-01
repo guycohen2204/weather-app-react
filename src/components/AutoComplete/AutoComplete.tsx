@@ -23,7 +23,7 @@ const AutoComplete = ({ list, setSearchValue, setCities }: Props) => {
 
         setSearchValue('');
         setCity(selectedOption);
-        setCities(prev => [...prev, selectedOption])
+        setCities(prev => [selectedOption, ...prev])
         
 	};
 
