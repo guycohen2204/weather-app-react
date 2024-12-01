@@ -26,8 +26,6 @@ const TodaysHighlights = () => {
 			try {
 				if (city) {
 					const weatherData = await getCurrentWeatherByCity(city);
-					console.log(weatherData);
-
 					setData(weatherData);
 				}
 			} catch (error) {

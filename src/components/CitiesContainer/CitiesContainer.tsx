@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './CitiesContainer.module.css';
 import CityButton from '../CityButton/CityButton';
 import { AppContext } from '../../context/AppProvider';
+import { getCitiesList } from '../../utils/localStorageFuncs';
 
 type Props = {
 	cities: string[];
@@ -10,7 +11,10 @@ type Props = {
 };
 
 const CitiesContainer = ({ cities, setCities }: Props) => {
-	const [selectedCity, setSelectedCity] = useState<string>('')
+	const [selectedCity, setSelectedCity] = useState<string>(() => {
+		const savedCities = getCitiesList();
+		return savedCities?.[0] || '';
+	})
 
 	const context = useContext(AppContext);
 	if (!context) {

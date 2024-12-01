@@ -4,9 +4,10 @@ import styles from './SideBar.module.css';
 import Search from '../Search/Search';
 import CitiesContainer from '../CitiesContainer/CitiesContainer';
 import TodaysWeather from '../TodaysWeather/TodaysWeather';
+import { getCitiesList } from '../../utils/localStorageFuncs';
 
 const SideBar = () => {
-	const [cities, setCities] = useState<string[]>(['London', 'Mexico City']);
+	const [cities, setCities] = useState<string[]>(() => getCitiesList());
 
 	return (
 		<div className={styles.sideBar}>

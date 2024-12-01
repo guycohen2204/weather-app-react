@@ -7,6 +7,7 @@ import { AppContext } from '../../context/AppProvider';
 import getAutoCompleteSuggestions from '../../api/getAutoCompleteSuggestions';
 import AutoComplete from '../AutoComplete/AutoComplete';
 import { capitalize } from '../../utils/capitalize';
+import { setCitiesList } from '../../utils/localStorageFuncs';
 
 type Props = {
 	cities: string[];
@@ -49,8 +50,10 @@ const Search = ({ cities, setCities }: Props) => {
 		if (searchValue.trim()) {
 			const suggestion = await getAutoCompleteSuggestions(searchValue)
 			const capitalizedSearchValue = capitalize(suggestion[0]);
-			if (!cities.includes(capitalizedSearchValue))
+			if (!cities.includes(capitalizedSearchValue)) {
 				setCities((prev) => [...prev, capitalizedSearchValue]);
+				setCitiesList([...cities, capitalizedSearchValue])
+			}
 
 			setCity(capitalizedSearchValue);
 			setSearchValue('');

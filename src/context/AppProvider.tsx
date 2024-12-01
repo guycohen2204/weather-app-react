@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { getCitiesList } from '../utils/localStorageFuncs';
 
 type Theme = 'light' | 'dark';
 
@@ -17,7 +18,10 @@ type Props = {
 
 const AppProvider = ({ children }: Props) => {
 	const [theme, setTheme] = useState<Theme>('light');
-	const [city, setCity] = useState<string>('London');
+	const [city, setCity] = useState<string>(() => {
+		const savedCities = getCitiesList();
+		return savedCities?.[0] || '';
+	});
 
 	const value = {
 		theme,

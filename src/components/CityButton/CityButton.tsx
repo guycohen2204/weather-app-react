@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import styles from './CityButton.module.css';
 import { AppContext } from '../../context/AppProvider';
+import { setCitiesList } from '../../utils/localStorageFuncs';
 
 type Props = {
 	city: string;
@@ -26,7 +27,8 @@ const CityButton = ({ city, setCities, cities, selected }: Props) => {
 
 	const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const seletedCity = event.currentTarget.value;
-		setCities((prev) => [...prev].filter((city) => city !== seletedCity));
+		setCities((prev) => [...prev].filter((city: string) => city !== seletedCity));
+		setCitiesList([...cities].filter((city: string) => city !== seletedCity))
 
 		if (seletedCity === currentCity) {
 			setCity(cities.filter(city => city !== seletedCity)[0]);
@@ -47,7 +49,7 @@ const CityButton = ({ city, setCities, cities, selected }: Props) => {
 				value={city}
 				onClick={handleRemove}
 			>
-				X
+				-
 			</button>
 		</div>
 	);

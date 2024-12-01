@@ -1,30 +1,35 @@
 .container {
     display: flex;
-    flex-direction: row;
-    border-radius: 30px;
-    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
     margin: 3px 0;
     width: 85%;
+    min-height: 55px;
     background-color: rgba(214, 215, 218, 0.8);
 }
 
 .selected {
-    background-color: rgba(100, 100, 100, 0.8);
-    font-weight: 600;
+    background-color: rgba(100, 100, 100, 0.75);
+    font-weight: 700;
 }
 
 .buttonContainer {
     padding: 10px;
     width: 100%;
     border: none;
-    border-right: 1px solid black;
     cursor: pointer;
     background-color: transparent;
     font-weight: inherit;
 }
 
 .removeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
     border: none;
     cursor: pointer;
-    background-color: transparent;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
 }
