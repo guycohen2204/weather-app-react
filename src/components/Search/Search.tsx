@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Search.module.css';
 
 import { GoSearch } from 'react-icons/go';
@@ -19,6 +19,8 @@ const Search = ({ cities, setCities }: Props) => {
 	const [autoCompleteOptions, setAutoCompleteOptions] = useState<string[]>(
 		[]
 	);
+	const [debounceTimeout, setDebounceTimeout] =
+		useState<NodeJS.Timeout | null>(null);
 
 	const context = useContext(AppContext);
 	if (!context) {
@@ -30,10 +32,10 @@ const Search = ({ cities, setCities }: Props) => {
 	const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		const val: string = event.target.value;
 		setSearchValue(val);
-	};
 
-	useEffect(() => {
-		const checkSuggestions = async (val: string) => {
+		if (debounceTimeout) clearTimeout(debounceTimeout);
+
+		const newTimeout = setTimeout(async () => {
 			if (val.trim()) {
 				const suggestions: string[] = await getAutoCompleteSuggestions(
 					val
@@ -42,17 +44,18 @@ const Search = ({ cities, setCities }: Props) => {
 			} else {
 				setAutoCompleteOptions([]);
 			}
-		};
-		checkSuggestions(searchValue);
-	}, [searchValue]);
+		}, 300);
+
+		setDebounceTimeout(newTimeout);
+	};
 
 	const handleSubmit = async () => {
 		if (searchValue.trim()) {
-			const suggestion = await getAutoCompleteSuggestions(searchValue)
+			const suggestion = await getAutoCompleteSuggestions(searchValue);
 			const capitalizedSearchValue = capitalize(suggestion[0]);
 			if (!cities.includes(capitalizedSearchValue)) {
 				setCities((prev) => [capitalizedSearchValue, ...prev]);
-				setCitiesList([capitalizedSearchValue, ...cities])
+				setCitiesList([capitalizedSearchValue, ...cities]);
 			}
 
 			setCity(capitalizedSearchValue);
