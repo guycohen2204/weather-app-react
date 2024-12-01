@@ -6,7 +6,7 @@ import CitiesContainer from '../CitiesContainer/CitiesContainer';
 import TodaysWeather from '../TodaysWeather/TodaysWeather';
 
 const SideBar = () => {
-	const [cities, setCities] = useState<string[]>(['London', 'Tel Aviv']);
+	const [cities, setCities] = useState<string[]>(['London', 'Mexico City']);
 
 	return (
 		<div className={styles.sideBar}>

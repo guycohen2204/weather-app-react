@@ -6,9 +6,11 @@ import { AppContext } from '../../context/AppProvider';
 import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
 import { WeatherType } from '../../models/WeatherType';
 import { roundString } from '../../utils/roundString';
+import Loader from '../Loader/Loader';
 
 const TodaysWeather = () => {
 	const [data, setData] = useState<WeatherType>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const context = useContext(AppContext);
 
@@ -20,6 +22,7 @@ const TodaysWeather = () => {
 
 	useEffect(() => {
 		const fetchWeatherData = async () => {
+			setIsLoading(true);
 			try {
 				if (city) {
 					const weatherData = await getCurrentWeatherByCity(city);
@@ -27,13 +30,17 @@ const TodaysWeather = () => {
 				}
 			} catch (error) {
 				console.error('Error fetching weather data:', error);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
 		fetchWeatherData();
 	}, [city]);
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<div className={styles.container}>
 			<img src={data?.current.conditionIcon} alt='condition logo' />
 			<div className={styles.Degree} style={{ padding: '10px' }}>

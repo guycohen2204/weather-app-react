@@ -14,7 +14,7 @@ const AppContent = () => {
 
 	return (
 		<div className={styles.container}>
-			<div>
+			<div  className={styles.cardsContainer}>
 				<div className={styles.buttonsContainer}>
 					<button
 						className={`${styles.periodTitle} ${isHourly && styles.active}`}

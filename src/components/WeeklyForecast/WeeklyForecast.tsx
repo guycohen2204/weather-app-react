@@ -6,9 +6,11 @@ import { DailyType } from '../../models/WeatherType';
 import getDailyForecastByCityName from '../../api/getDailyForecast';
 import { AppContext } from '../../context/AppProvider';
 import moment from 'moment';
+import Loader from '../Loader/Loader';
 
 const WeeklyForecast = () => {
 	const [data, setData] = useState<DailyType[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const context = useContext(AppContext);
 
@@ -20,6 +22,7 @@ const WeeklyForecast = () => {
 
 	useEffect(() => {
 		const fetchDailyWeatherData = async () => {
+			setIsLoading(true);
 			try {
 				if (city) {
 					const weatherData = await getDailyForecastByCityName(city);
@@ -27,13 +30,17 @@ const WeeklyForecast = () => {
 				}
 			} catch (error) {
 				console.error('Error fetching weather data:', error);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
 		fetchDailyWeatherData();
 	}, [city]);
 
-	return (
+	return isLoading ? (
+		<Loader />
+	) : (
 		<div className={styles.container}>
 			{data.map((dailyObj: DailyType, index: number) => (
 				<DailyCard

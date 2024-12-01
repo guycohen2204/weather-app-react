@@ -1,6 +1,8 @@
 .container {
     background: rgb(246, 246, 248);
     padding: 15px;
+    max-width: 75vw;
+    min-height: 50vh;
 }
 
 .buttonsContainer {

@@ -6,9 +6,11 @@ import { AppContext } from '../../context/AppProvider';
 import getCurrentWeatherByCity from '../../api/getCurrentWeatherByCity';
 import { WeatherType } from '../../models/WeatherType';
 import MapComponent from '../MapComponent/MapComponent';
+import Loader from '../Loader/Loader';
 
 const TodaysHighlights = () => {
 	const [data, setData] = useState<WeatherType>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const context = useContext(AppContext);
 
@@ -20,23 +22,28 @@ const TodaysHighlights = () => {
 
 	useEffect(() => {
 		const fetchWeatherData = async () => {
+			setIsLoading(true);
 			try {
 				if (city) {
 					const weatherData = await getCurrentWeatherByCity(city);
 					console.log(weatherData);
-					
+
 					setData(weatherData);
 				}
 			} catch (error) {
 				console.error('Error fetching weather data:', error);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 
 		fetchWeatherData();
 	}, [city]);
 
-	return (
-		<div>
+	return isLoading ? (
+		<Loader />
+	) : (
+		<div className={styles.container}>
 			<h3 style={{ paddingLeft: '10px' }}>Today's Highlights</h3>
 			<div className={styles.gridContainer}>
 				<HighlightCard

@@ -37,7 +37,10 @@ const MapComponent = ({ coords }: Props) => {
 
 	return (
 		<div className={styles.mapContainer}>
-			<div ref={mapRef} style={{ width: '100%', height: '140px' }} />
+			<div
+				ref={mapRef}
+				className={styles.map}
+			/>
 		</div>
 	);
 };
