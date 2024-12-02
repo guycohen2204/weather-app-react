@@ -4,6 +4,7 @@
     grid-template-columns: 1fr 4fr;
     border-radius: 1rem;
     overflow: hidden;
+    min-height: 80vh;
 }
 
 .App.dark {

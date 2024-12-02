@@ -22,7 +22,7 @@ const CityButton = ({ city, setCities, cities, selected }: Props) => {
 		throw new Error('AppContext must be used in an AppProvider');
 	}
 
-	const { city: currentCity, setCity, theme } = context;
+	const { city: currentCity, setCity } = context;
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const selectedCity = event.currentTarget.value;
