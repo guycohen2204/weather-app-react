@@ -30,4 +30,5 @@
 .dark {
     background-color: rgba(var(--background-dark-color), 1);
     color: var(--dark-text);
+    border-bottom: 2px solid white;
 }

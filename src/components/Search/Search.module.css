@@ -17,6 +17,7 @@
     border-radius: 20px;
     height: 25px;
     align-self: center;
+    padding: 5px;
 }
 
 input:focus {
