@@ -5,3 +5,7 @@
     padding: 30px 15px;
     align-items: center;
 }
+
+.dark {
+    background-color: rgba(var(--background-dark-color), 0.5);
+}

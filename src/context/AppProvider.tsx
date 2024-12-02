@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { getCitiesList } from '../utils/localStorageFuncs';
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
 type AppContextType = {
 	city: string;
