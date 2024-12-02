@@ -85,13 +85,12 @@ const Search = ({ cities, setCities }: Props) => {
 				onKeyDown={handleKeyDown}
 				placeholder='Search for cities...'
 			/>
-			{autoCompleteOptions.length > 0 && (
-				<AutoComplete
-					list={autoCompleteOptions}
-					setSearchValue={setSearchValue}
-					setCities={setCities}
-				/>
-			)}
+			<AutoComplete
+				show={!!autoCompleteOptions.length}
+				list={autoCompleteOptions}
+				setSearchValue={setSearchValue}
+				setCities={setCities}
+			/>
 
 			<button className={styles.targetButton} onClick={handleSubmit}>
 				<FiTarget />

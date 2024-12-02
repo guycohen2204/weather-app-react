@@ -42,7 +42,7 @@ const TodaysWeather = () => {
 		<Loader />
 	) : (
 		<div className={styles.container}>
-			<img src={data?.current.conditionIcon} alt='condition logo' />
+			<img src={data?.current.conditionIcon} alt='condition logo' width={'150px'} />
 			<div className={styles.Degree} style={{ padding: '10px' }}>
 				{data?.current.temp
 					? roundString(data?.current.temp) + '°C'

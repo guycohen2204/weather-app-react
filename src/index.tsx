@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -20,5 +21,6 @@ const router = createBrowserRouter([
 root.render(
 	<React.StrictMode>
 		<RouterProvider router={router} />
+		<ToastContainer autoClose={3000} />
 	</React.StrictMode>
 );

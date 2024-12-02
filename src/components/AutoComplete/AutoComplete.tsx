@@ -6,40 +6,41 @@ import { AppContext } from '../../context/AppProvider';
 type Props = {
 	list: string[];
 	setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-    setCities: React.Dispatch<React.SetStateAction<string[]>>;
+	setCities: React.Dispatch<React.SetStateAction<string[]>>;
+	show: boolean
 };
 
-const AutoComplete = ({ list, setSearchValue, setCities }: Props) => {
-
+const AutoComplete = ({ list, setSearchValue, setCities, show }: Props) => {
 	const context = useContext(AppContext);
-    if (!context) {
+	if (!context) {
 		throw new Error('AppContext must be used in an AppProvider');
 	}
 
-    const { setCity } = context;
+	const { setCity } = context;
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const selectedOption: string = event.currentTarget.value;
 
-        setSearchValue('');
-        setCity(selectedOption);
-        setCities(prev => [selectedOption, ...prev])
-        
+		setSearchValue('');
+		setCity(selectedOption);
+		setCities((prev) => [selectedOption, ...prev]);
 	};
 
-	return (
+	return show ? (
 		<div className={styles.autoCompleteContainer}>
 			{list.map((item: string, index: number) => (
 				<button
 					key={index}
 					className={styles.autoCompleteItem}
-                    value={item}
+					value={item}
 					onClick={handleClick}
 				>
 					{item}
 				</button>
 			))}
 		</div>
+	) : (
+		<></>
 	);
 };
 
